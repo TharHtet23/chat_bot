@@ -11,7 +11,6 @@ const bot = new TelegramBot(token, { polling: true });
 bot.setMyCommands([
   { command: "/start", description: "Start the bot" },
   { command: "/help", description: "Help" },
-  // Add other commands as needed
 ]);
 
 // Replace the setMenuButton function with this:
@@ -21,7 +20,7 @@ async function setChatMenuButton() {
       menu_button: {
         type: "web_app",
         text: "Open App",
-        web_app: { url: "https://invitecodebackend-production.up.railway.app" },
+        web_app: { url: process.env.WEB_APP_URL },
       },
     });
   } catch (error) {
@@ -45,7 +44,7 @@ bot.onText(/\/start/, (msg) => {
           {
             text: "Open Web App",
             web_app: {
-              url: "https://invitecodebackend-production.up.railway.app",
+              url: process.env.WEB_APP_URL,
             },
           },
         ],
